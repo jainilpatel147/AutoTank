@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
                             navigate  = new Intent(getApplicationContext(),ReadingsActivity.class);
                         }
                         else{
-                            navigate = new Intent(getApplicationContext(),MainActivity.class);
+                            navigate = new Intent(getApplicationContext(),LoginActivity.class);
                         }
                         startActivity(navigate);
                         finish();
