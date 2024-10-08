@@ -41,4 +41,12 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("androidx.core:core:1.10.0")
+    // Retrofit for API calls
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+    // Converter for JSON to Java objects (using Gson)
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // OkHttp for logging network requests (optional but useful)
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
 }
