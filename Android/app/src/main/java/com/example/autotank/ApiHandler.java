@@ -31,25 +31,32 @@ public class ApiHandler {
     public void construct(Context context) {
         requestQueue = Volley.newRequestQueue(context);
     }
-    // Fetch data from the API asynchronously
-    public void fetchApiData(String url,VolleyCallback callback) {
+
+    public void fetchSingleVal(Context context,String url, String name, String reqfield, VolleyCallback callback){
+        String final_url = url + "/" +name;
+
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET, url, null,
+                Request.Method.GET, final_url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        if(response.length()>0){
-                            callback.onSuccess("true");
-                        }
-                        else{
-                            callback.onSuccess("false");
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                String name = jsonObject.getString(reqfield);
+                                // Assuming 'height' is a string field
+                                callback.onSuccess(name);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        callback.onSuccess("error");
+                       callback.onSuccess("false");
                     }
                 }
         );
@@ -57,25 +64,23 @@ public class ApiHandler {
         // Add the request to the RequestQueue for asynchronous execution
         requestQueue.add(jsonArrayRequest);
     }
-    public void populateApiData(String url,ArrayList<String> arrayList, ArrayAdapter<String> adapter,String value,VolleyCallback callback) {
+    public <T> void fetchtolist(String url, String user ,String reqField, ArrayList<T> arrayList, ArrayAdapter<T> adapter , VolleyCallback callback) {
+        String final_url = url + "/" +user;
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET, url, null,
+                Request.Method.GET, final_url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        // Handle the response
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 JSONObject jsonObject = response.getJSONObject(i);
-                                String name = jsonObject.getString(value);  // Assuming 'height' is a string field
-                                arrayList.add(name);
-
+                                String name = jsonObject.getString(reqField);
+                                arrayList.add((T) name);// Assuming 'height' is a string field
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
-                        // Notify adapter that the data has changed
                         adapter.notifyDataSetChanged();
                         callback.onSuccess("true");
                     }
@@ -83,8 +88,9 @@ public class ApiHandler {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        arrayList.add("error" + error.getMessage());
-                        callback.onSuccess("error");
+                            arrayList.add((T) error.getMessage());
+                            adapter.notifyDataSetChanged();
+                            callback.onSuccess("false");
                     }
                 }
         );
@@ -92,7 +98,6 @@ public class ApiHandler {
         // Add the request to the RequestQueue for asynchronous execution
         requestQueue.add(jsonArrayRequest);
     }
-
     public void sendPostRequest(String url, JSONObject jsonObject, Context context ,VolleyCallback callback) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                 new Response.Listener<JSONObject>() {
@@ -100,7 +105,7 @@ public class ApiHandler {
                     public void onResponse(JSONObject response) {
                         try {
                             boolean name = response.getBoolean("result");
-//                            Toast.makeText(context, "Message " + name, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Message " + name, Toast.LENGTH_SHORT).show();
                             if (name) {
                                 callback.onSuccess("true");
                             } else {

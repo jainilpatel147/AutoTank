@@ -14,7 +14,7 @@ async function getMes(DeviceId){
     try{
         const checkMes = await Model.Measurement.find({"device" : DeviceId});
         if(checkMes != null){
-            return true; 
+            return checkUser; 
         }
         else{
             return false;

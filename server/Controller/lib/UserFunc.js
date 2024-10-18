@@ -72,6 +72,20 @@ async function getUsersAll(){
         return false;
     }
 }
+async function getUserid(name){
+    try{
+        const checkUser = await Model.User.find({"name": name});
+        if(checkUser.length>0){
+            return checkUser; 
+        }
+        else{
+            return false;
+        }
+    }
+    catch(e){
+        return false;
+    }
+}
 async function deleteUser(name,password){
     try{
         const checkUser = await Model.User.findOne({"name" : name , "password" : password});
@@ -88,4 +102,4 @@ async function deleteUser(name,password){
         return false;
     }
 }
-module.exports= {createUser,validateUser,updateUser,getUser,getUsersAll,deleteUser};
+module.exports= {createUser,validateUser,getUserid,updateUser,getUser,getUsersAll,deleteUser};

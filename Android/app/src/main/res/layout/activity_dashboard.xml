@@ -57,11 +57,17 @@
             android:layout_height="wrap_content"
             android:text="Logout"
             android:id="@+id/btn_logout"/>
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="show Notification"-->
+<!--            android:id="@+id/btn_notify"/>-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="show Notification"
-            android:id="@+id/btn_notify"/>
+            android:text="Add new Devices"
+            android:id="@+id/btn_addnew"/>
+
     </LinearLayout>
 
 </LinearLayout>

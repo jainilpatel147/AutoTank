@@ -28,10 +28,19 @@ measurement.post('/rec', function(req,res){
     var waterlevel = req.body;
     console.log(waterlevel);
 })
+measurement.get('/:devname',async function(req,res){
+    const devid = req.params.devid;
+    var result = await MesFunc.getMes(dev);
+    if(result)
+        res.json(result);
+    else
+        res.json({"result":false});
+    
+});
 //Register the new user
 measurement.post('/insert',async function(req,res){
     var devicedetails = req.body;
-    var result = await MesFunc.createMes(devicedetails.waterlevel,deviceid);
+    var result = await MesFunc.createMes(devicedetails.waterlevel,devicedetails.deviceid);
     if(result)
         res.json({"result":true});
     else

@@ -11,12 +11,12 @@ import org.json.JSONObject;
 public class UserFunc {
 
     public interface UserFuncCallback {
-        void onResult(boolean isSuccess);
+        void onResult(String isSuccess);
     }
 
     private static ApiHandler handler = new ApiHandler();
     private static String userCreationUrl = "http://192.168.29.194:5000/api/users/register";
-    private static String getUsersUrl= "http://192.168.29.194:5000/api/users/me";
+    private static String getUserById= "http://192.168.29.194:5000/api/users";
     private static String validateUserUrl= "http://192.168.29.194:5000/api/users/login";
     private static String updateUserUrl = "http://192.168.29.194:5000/api/users/register";
     private static String DeleteUserUrl = "http://192.168.29.194:5000/api/users/register";
@@ -33,13 +33,12 @@ public class UserFunc {
         }
         String res = "";
         handler.sendPostRequest(userCreationUrl,jsonObject,context, result -> {
-
             if (result.equals("true")) {
-                callback.onResult(true);
+                callback.onResult("true");
             } else if (result.equals("false")) {
-                callback.onResult(false);
+                callback.onResult("false");
             } else {
-                callback.onResult(false);
+                callback.onResult("false");
             }
         });
 
@@ -58,14 +57,26 @@ public class UserFunc {
         String res ="";
         handler.sendPostRequest(validateUserUrl,jsonObject,context,result -> {
             if (result.equals("true")) {
-                callback.onResult(true);
+                callback.onResult("true");
             } else if (result.equals("false")) {
-                callback.onResult(false);
+                callback.onResult("false");
             } else {
-                callback.onResult(false);
+                callback.onResult("false");
             }
         });
 //        Toast.makeText(context,  res, Toast.LENGTH_SHORT).show();
 
+    }
+    public static  void fetchUserId(Context context,String name, String reqfield,UserFuncCallback callback) throws JSONException{
+        handler.construct(context);
+        handler.fetchSingleVal(context,getUserById,name,reqfield,result -> {
+            if (result.equals("false")) {
+                callback.onResult("false");
+            } else if (!result.equals("true")) {
+                callback.onResult(result);
+            } else {
+                callback.onResult("false");
+            }
+        });
     }
 }

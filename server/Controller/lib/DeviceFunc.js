@@ -2,9 +2,13 @@ var Model = require("../../Model/model");
 
 async function createDevice(name,height,userid){
     try{
+        console.log('hello from function');
         const user = await Model.Device.create({"name":name,"height":height,"user":userid});
         await user.save();
-        return true;
+        if(user)
+            return true;
+        else
+            return false;
     }
     catch(e){
         return false;
@@ -52,6 +56,36 @@ async function getDeviceAll(){
         return false;
     }
 }
+async function getDeviceByName(name){
+    try{
+        const checkUser = await Model.Device.find({"name": name});
+        console.log(checkUser);
+        if(checkUser.length>0){
+            return checkUser; 
+        }
+        else{
+            return false;
+        }
+    }
+    catch(e){
+        return false;
+    }
+}
+async function getDeviceById(user){
+    try{
+        const checkUser = await Model.Device.find({"user": user});
+        console.log(checkUser);
+        if(checkUser.length>0){
+            return checkUser; 
+        }
+        else{
+            return false;
+        }
+    }
+    catch(e){
+        return false;
+    }
+}
 async function deleteDevice(name){
     try{
         const user = await Model.Device.find({"name" : name});
@@ -68,4 +102,4 @@ async function deleteDevice(name){
         return false;
     }
 }
-module.exports= {createDevice,validateDevice,getDevice,getDeviceAll,deleteDevice};
+module.exports= {createDevice,getDeviceById,getDeviceByName,validateDevice,getDevice,getDeviceAll,deleteDevice};

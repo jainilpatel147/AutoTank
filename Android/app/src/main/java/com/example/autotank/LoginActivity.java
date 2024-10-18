@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this,"Loading..",Toast.LENGTH_SHORT).show();
                 UserFunc.validateUser(this, uname.getText().toString(), password.getText().toString(),
                         isSuccess -> {
-                            if(isSuccess){
+                            if(isSuccess!="false"){
                                 SharedPreferences pref = getSharedPreferences("user",MODE_PRIVATE);
                                 SharedPreferences.Editor editor = pref.edit();
 

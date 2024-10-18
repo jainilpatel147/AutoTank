@@ -31,9 +31,27 @@ device
         else
             res.json({"result":false});
     })
-
+device.get('/:name',async function(req,res){
+        const name = req.params.name;
+        var result = await DeviceFunc.getDeviceById(name);
+        if(result)
+            res.json(result);
+        else
+            res.json({"result":false});
+    });
 //Register the new user
 device.post('/register',async function(req,res){
+    var dev = req.body;
+    var result = await DeviceFunc.createDevice(dev.name,dev.height,dev.user);
+    console.log(result);
+    if(result)
+        res.json({"result":true});
+    else
+        res.json({"result":false});
+    
+});
+device.get('/:id',async function(req,res){
+    const deviceId = req.params.id;
     var devicedetails = req.body;
     var result = await DeviceFunc.createDevice(devicedetails.name,devicedetails.height,userid);
     if(result)
@@ -43,16 +61,16 @@ device.post('/register',async function(req,res){
     
 });
 
-device.post('/login',async function(req,res){
-    const userReq = req.body;
-    var result = await DeviceFunc.validateDevice(userReq.name,userReq.password);
-    console.log(result);
-    if(result)
-        res.json({"result":true});
-    else
-        res.json({"result":false});
+// device.post('/login',async function(req,res){
+//     const userReq = req.body;
+//     var result = await DeviceFunc.validateDevice(userReq.name,userReq.password);
+//     console.log(result);
+//     if(result)
+//         res.json({"result":true});
+//     else
+//         res.json({"result":false});
 
-});
+// });
 device.delete('/:id',async function(req,res){
     const userid= req.params.id;
     var result = await DeviceFunc.deleteUser(userid);

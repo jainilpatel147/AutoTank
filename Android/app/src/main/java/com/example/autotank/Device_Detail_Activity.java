@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,10 @@ public class Device_Detail_Activity extends AppCompatActivity {
         String uname = pref.getString("uname","");
         String mo = pref.getString("mobile_no","");
 
+        TextView dev_name = findViewById(R.id.dev_name);
+        Intent intent = getIntent();
+        String receivedString = intent.getStringExtra("device_name");
+        dev_name.setText(receivedString);
 
         //Tab layout code from here
         tab = findViewById(R.id.tab);

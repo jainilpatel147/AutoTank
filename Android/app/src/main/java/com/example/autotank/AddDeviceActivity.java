@@ -15,42 +15,28 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
-public class SignupActivity extends AppCompatActivity {
+public class AddDeviceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_add_device);
         Button btn = findViewById(R.id.signupButton);
         EditText uname = findViewById(R.id.nameInput);
-        EditText email_id = findViewById(R.id.emailInput);
-        EditText password = findViewById(R.id.passwordInput);
-        EditText confPass = findViewById(R.id.confpassInput);
-        TextView txt = findViewById(R.id.login_btn);
+        EditText Height = findViewById(R.id.HeightInput);
+        SharedPreferences pref = getSharedPreferences("user", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        String userid = pref.getString("userid", "");
+        Toast.makeText(this,"id" + userid,Toast.LENGTH_SHORT).show();
 
-        txt.setOnClickListener(v -> {
-            Intent view_list = new Intent(this,LoginActivity.class);
-            startActivity(view_list);
-            finish();
-        });
         btn.setOnClickListener(v -> {
-            if(!password.getText().toString().equals(confPass.getText().toString())){
-                Toast.makeText(this,"Passwords Mismatch",Toast.LENGTH_LONG).show();
-                return;
-            }
             try {
-                UserFunc.createUser(this, uname.getText().toString(),email_id.getText().toString(), password.getText().toString(),
+                DeviceFunc.createDevice(this, uname.getText().toString(),Height.getText().toString(),userid,
                         isSuccess -> {
                             if(isSuccess!="false"){
-                                SharedPreferences pref = getSharedPreferences("user",MODE_PRIVATE);
-                                SharedPreferences.Editor editor = pref.edit();
-                                editor.putBoolean("is_login",true);
-                                editor.putString("uname",uname.getText().toString());
-                                editor.apply();
-
+                                Toast.makeText(this,"Device Created",Toast.LENGTH_SHORT).show();
                                 Intent view_list = new Intent(this,DashboardActivity.class);
                                 startActivity(view_list);
                                 finish();
@@ -62,7 +48,6 @@ public class SignupActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 throw new RuntimeException(e);
             }
-
         });
     }
 }

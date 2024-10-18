@@ -17,3 +17,15 @@ Url: /api/measurements/me, Time: 12:32:46
 Url:- /api/measurements/rec, Time:- 13:11:3
 Url:- /api/measurements/me, Time:- 13:31:40
 Url:- /api/measurements/me, Time:- 20:1:18
+Url:- /api/measurements/insert, Time:- 23:49:8
+Url:- /api/measurements/insert, Time:- 23:52:59
+Url:- /api/measurements/insert, Time:- 23:53:0
+Url:- /api/measurements/insert, Time:- 23:53:0
+Url:- /api/measurements/insert, Time:- 23:53:1
+Url:- /api/measurements/insert, Time:- 23:53:2
+Url:- /api/measurements/insert, Time:- 23:53:9
+Url:- /api/measurements/insert, Time:- 23:53:46
+Url:- /api/measurements/insert, Time:- 0:19:23
+Url:- /api/measurements/insert, Time:- 0:19:28
+Url:- /api/measurements/insert, Time:- 0:19:34
+Url:- /api/measurements/insert, Time:- 0:19:38

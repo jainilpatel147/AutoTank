@@ -39,12 +39,21 @@ user.post('/register',async function(req,res){
     var userdetails = req.body;
     var result = await userFunc.createUser(userdetails.name,userdetails.email,userdetails.password);
     if(result)
+        
         res.json({"result":true});
     else
         res.json({"result":false});
     
 });
-
+user.get('/:name',async function(req,res){
+    const name = req.params.name;
+    var result = await userFunc.getUserid(name);
+    if(result)
+        res.json(result);
+    else
+        res.json({"result":false});
+    
+});
 user.post('/login',async function(req,res){
     const userReq = req.body;
     var result = await userFunc.validateUser(userReq.name,userReq.password);
