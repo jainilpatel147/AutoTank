@@ -16,19 +16,26 @@
         android:contentDescription="App Logo"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"/>
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="AutoTank"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:textSize="30sp"/>-->
 
     <LinearLayout
-            android:layout_width="match_parent"
-            android:background="@drawable/layout_bg"
-            android:layout_height="wrap_content"
-            android:padding="30sp"
-            android:layout_margin="10sp"
-            android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:background="@drawable/layout_bg"
+        android:layout_height="wrap_content"
+        android:padding="30sp"
+        android:layout_margin="10sp"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Signup"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="30sp"/>
@@ -50,6 +57,19 @@
 
         <!-- Mobile Number Field -->
         <EditText
+            android:id="@+id/emailInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Email ID"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:drawableLeft="@drawable/ic_phone"
+            android:drawablePadding="8dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"/>
+        <EditText
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,17 +82,31 @@
             android:drawablePadding="8dp"
             android:textSize="16sp"
             android:layout_marginBottom="24dp"/>
+        <EditText
+            android:id="@+id/confpassInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Confirm password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:drawableLeft="@drawable/ic_phone"
+            android:drawablePadding="8dp"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"/>
 
         <!-- Login Button -->
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginButton"
+            android:id="@+id/signupButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Signup"
             android:textSize="18sp"
             android:padding="12dp"
             android:background="#3F51B5"
             android:textColor="#FFFFFF"/>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,18 +115,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
                 android:textColor="@color/black"
-                android:text="Dont have an account?"/>
+                android:textSize="18sp"
+                android:text="Already a user?"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
-                android:id="@+id/signup_btn"
+                android:id="@+id/login_btn"
                 android:textSize="18sp"
-                android:textColor="#172EC5"
-                android:text="signup"/>
+                android:text="Login"
+                android:textColor="#182EBD"
+                />
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>

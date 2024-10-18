@@ -12,7 +12,6 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 
 public class NotificationHelper {
-    private static final int NOTIFICATION_ID = 100;
     private static final String CHANNEL_ID = "My_Channel";
 
     // Method to create and show notifications

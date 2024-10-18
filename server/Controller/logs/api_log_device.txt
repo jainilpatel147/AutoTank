@@ -1,0 +1,8 @@
+
+Url:- /api/devices/register, Time:- 9:43:59
+Url:- /api/devices/register, Time:- 9:44:29
+Url:- /api/devices/me, Time:- 9:58:48
+Url:- /api/devices/me, Time:- 10:7:23
+Url:- /api/devices/me, Time:- 13:32:45
+Url:- /api/devices/me, Time:- 14:3:3
+Url:- /api/devices/me, Time:- 20:1:15

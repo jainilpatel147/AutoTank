@@ -29,6 +29,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -41,12 +42,5 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("androidx.core:core:1.10.0")
-    // Retrofit for API calls
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-
-    // Converter for JSON to Java objects (using Gson)
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-
-    // OkHttp for logging network requests (optional but useful)
-    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.1")
+    implementation("com.android.volley:volley:1.2.1")
 }

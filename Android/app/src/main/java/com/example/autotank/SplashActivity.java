@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
                         Boolean is_login = pref.getBoolean("is_login" , false);
                         Intent navigate;
                         if(is_login){
-                            navigate  = new Intent(getApplicationContext(),ReadingsActivity.class);
+                            navigate  = new Intent(getApplicationContext(),DashboardActivity.class);
                         }
                         else{
                             navigate = new Intent(getApplicationContext(),LoginActivity.class);
